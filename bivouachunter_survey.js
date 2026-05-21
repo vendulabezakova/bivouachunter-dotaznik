@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'bh_survey_responses';
+const STORAGE_KEY = 'bh_survey_v2';
 
 function loadResponses() {
   try {

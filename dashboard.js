@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'bh_survey_responses';
+const STORAGE_KEY = 'bh_survey_v2';
 
 function loadResponses() {
   try {
@@ -198,21 +198,4 @@ function quotesCard(title, quotes, terra = false) {
   return card;
 }
 
-function seedDemo() {
-  if (loadResponses().length > 0) return;
-  const demo = [
-    { ts: Date.now()-1e6, q1:'5–10× ročně', q2:'Pravidelně, je to záměr', q_zk:'Zkušený/á — bivak je můj standard', q_kde:['Česko','Slovensko'], q_kde_jine:'', q8:'iPhone (iOS)', q9:'Naprosto zásadní — bez signálu jsem často', q10:'Ano, hned', app_plan:['Mapy.cz','Komoot'], app_teren:['Mapy.cz'], p_pristresek:4, p_voda:5, p_orientace:2, p_vitr:3, p_pocasi:5, p_pesina:4, p_odlehlost:3, p_teren:4, q6:'Mapy.cz neumí filtrovat přístřešky, musím je hledat ručně.', q7:'Přišel jsem k přístřešku ve 20:00, byl obsazený. Musel jsem hledat náhradní místo za tmy.' },
-    { ts: Date.now()-2e6, q1:'2–4× ročně', q2:'Občas, když vychází situace', q_zk:'Mám zkušenosti — bivakuji pravidelně', q_kde:['Česko'], q_kde_jine:'Alpy', q8:'Android', q9:'Důležitá, ale nějak se vždy domluvím', q10:'Záleží na ceně', app_plan:['AllTrails','Mapy.cz'], app_teren:['AllTrails'], p_pristresek:3, p_voda:4, p_orientace:3, p_vitr:2, p_pocasi:4, p_pesina:3, p_odlehlost:4, p_teren:3, q6:'AllTrails má skvělé trasy, ale nic o místech na spaní.', q7:'Terén byl podmáčený, netušil jsem to dopředu.' },
-    { ts: Date.now()-3e6, q1:'Víc než 10× ročně', q2:'Pravidelně, je to záměr', q_zk:'Zkušený/á — bivak je můj standard', q_kde:['Slovensko','Rakousko'], q_kde_jine:'Norsko', q8:'iPhone (iOS)', q9:'Naprosto zásadní — bez signálu jsem často', q10:'Ano, hned', app_plan:['OsmAnd','Wikiloc'], app_teren:['OsmAnd'], p_pristresek:2, p_voda:5, p_orientace:4, p_vitr:4, p_pocasi:3, p_pesina:2, p_odlehlost:5, p_teren:4, q6:'OsmAnd je super offline ale složitý. Chybí mi filtrování spotů.', q7:'Počasí se otočilo, musel jsem změnit celou trasu. Neměl jsem zálohu B.' },
-    { ts: Date.now()-4e6, q1:'5–10× ročně', q2:'Výjimečně, z nouze', q_zk:'Mám zkušenosti — bivakuji pravidelně', q_kde:['Česko'], q_kde_jine:'', q8:'Android', q9:'Nevadí mi — signál většinou mám', q10:'Záleží na ceně', app_plan:['Mapy.cz','Google Maps'], app_teren:['Mapy.cz'], p_pristresek:5, p_voda:3, p_orientace:1, p_vitr:2, p_pocasi:4, p_pesina:4, p_odlehlost:2, p_teren:3, q6:'Chtěl bych vidět přístřešky na mapě s detailem — kapacita, stav.', q7:'' },
-    { ts: Date.now()-5e6, q1:'2–4× ročně', q2:'Občas, když vychází situace', q_zk:'Začínám — pár nocí za sebou', q_kde:['Česko','Slovensko'], q_kde_jine:'', q8:'iPhone (iOS)', q9:'Naprosto zásadní — bez signálu jsem často', q10:'Ano, hned', app_plan:['Komoot','Mapy.cz'], app_teren:['Komoot'], p_pristresek:3, p_voda:4, p_orientace:3, p_vitr:3, p_pocasi:5, p_pesina:3, p_odlehlost:3, p_teren:3, q6:'Komoot nefunguje offline spolehlivě.', q7:'Bloudila jsem hodinu protože mapy se nepřepnuly na offline mode.' },
-  ];
-  demo.forEach(r => {
-    const arr = loadResponses();
-    arr.push(r);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
-  });
-}
-
-seedDemo();
 renderDashboard();
