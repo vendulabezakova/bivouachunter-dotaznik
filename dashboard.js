@@ -1,8 +1,16 @@
-const STORAGE_KEY = 'bh_survey_v2';
+const SUPABASE_URL = 'https://cjkllrncwahcjnpwsbtb.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_tbLChJpoydiXQxWczuIk-Q_L8_3cnk-';
 
-function loadResponses() {
+async function loadResponses() {
   try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/responses?select=*&order=created_at.asc`, {
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+      },
+    });
+    if (!res.ok) return [];
+    return await res.json();
   } catch { return []; }
 }
 
@@ -27,18 +35,22 @@ function countValues(data, key) {
   return map;
 }
 
-function renderDashboard() {
-  const data = loadResponses();
-  document.getElementById('resp-count').textContent = data.length + ' ' + plural(data.length, 'odpověď', 'odpovědi', 'odpovědí');
+async function renderDashboard() {
+  document.getElementById('dash-empty').style.display = 'none';
+  document.getElementById('dash-content').style.display = 'none';
+  document.getElementById('resp-count').textContent = 'Načítám…';
 
-  if (!data.length) {
+  const data = await loadResponses();
+  const n = data.length;
+
+  document.getElementById('resp-count').textContent = n + ' ' + plural(n, 'odpověď', 'odpovědi', 'odpovědí');
+
+  if (!n) {
     document.getElementById('dash-empty').style.display = 'block';
-    document.getElementById('dash-content').style.display = 'none';
     return;
   }
-  document.getElementById('dash-empty').style.display = 'none';
-  document.getElementById('dash-content').style.display = 'block';
 
+  document.getElementById('dash-content').style.display = 'block';
   renderStats(data);
   renderCharts(data);
 }
@@ -73,6 +85,7 @@ function renderCharts(data) {
   grid.appendChild(barCard('Frekvence túr', countValues(data,'q1'), n, false));
   grid.appendChild(barCard('Úroveň zkušeností', countValues(data,'q_zk'), n, false));
   grid.appendChild(barCard('Kde bivakují', countValues(data,'q_kde'), n, true));
+  grid.appendChild(barCard('Absolvované trasy', countValues(data,'q_trasy'), n, true));
   grid.appendChild(donutCard('Zařízení', countValues(data,'q8')));
   grid.appendChild(heatCard(data));
   grid.appendChild(barCard('Appky — plánování', countValues(data,'app_plan'), n, true));
@@ -81,6 +94,7 @@ function renderCharts(data) {
   grid.appendChild(barCard('Zájem o BivouacHunter', countValues(data,'q10'), n, false));
   grid.appendChild(quotesCard('Co chybí v současných appkách', data.map(r=>r.q6).filter(Boolean)));
   grid.appendChild(quotesCard('Nepříjemné zážitky v terénu', data.map(r=>r.q7).filter(Boolean), true));
+  grid.appendChild(quotesCard('Nejisté místo na trase', data.map(r=>r.q_trasy_neistota).filter(Boolean), true));
 }
 
 function barCard(title, map, total, terra) {
