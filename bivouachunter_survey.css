@@ -296,6 +296,23 @@ textarea::placeholder { color: var(--text-dim); }
   inset: 0;
   background: linear-gradient(140deg, rgba(13,26,20,.78) 35%, transparent 68%);
 }
+.btn-copy {
+  margin-top: 1.4rem;
+  background: var(--emerald);
+  color: var(--bg);
+  font-family: var(--font);
+  font-size: .88rem;
+  font-weight: 600;
+  border: none;
+  padding: .7rem 1.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: .02em;
+  transition: all .2s;
+}
+.btn-copy:hover { background: var(--emerald2); transform: translateY(-1px); }
+.btn-copy.copied { background: var(--emerald2); }
+
 .success-msg-content {
   position: relative;
   z-index: 1;

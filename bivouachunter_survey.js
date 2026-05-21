@@ -11,6 +11,19 @@ function saveResponse(r) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
 }
 
+function copyLink() {
+  const url = 'https://vendulabezakova.github.io/bivouachunter-dotaznik/';
+  navigator.clipboard.writeText(url).then(() => {
+    const btn = document.getElementById('btn-copy');
+    btn.textContent = 'Odkaz zkopírován!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Zkopírovat odkaz';
+      btn.classList.remove('copied');
+    }, 2500);
+  });
+}
+
 function updateVal(input) {
   input.nextElementSibling.textContent = input.value;
 }
