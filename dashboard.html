@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BivouacHunter — Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="bivouachunter_survey.css">
+</head>
+<body>
+
+<nav>
+  <div class="logo">bivouac<span>hunter</span> / dashboard</div>
+</nav>
+
+<div class="dash-wrap">
+
+  <div class="dash-header">
+    <div>
+      <h2>Výsledky průzkumu</h2>
+      <p>BivouacHunter — User Research 2026</p>
+    </div>
+    <span class="resp-count" id="resp-count">0 odpovědí</span>
+  </div>
+
+  <div id="dash-empty" class="empty-dash">
+    <div class="icon">📋</div>
+    <p>Zatím žádné odpovědi. Sdílej dotazník a výsledky se objeví tady.</p>
+  </div>
+
+  <div id="dash-content" style="display:none">
+    <div class="stats-grid" id="stats-grid"></div>
+    <div class="charts-grid" id="charts-grid"></div>
+  </div>
+
+</div>
+
+<script src="dashboard.js"></script>
+</body>
+</html>

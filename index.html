@@ -11,14 +11,9 @@
 
 <nav>
   <div class="logo">bivouac<span>hunter</span> / výzkum</div>
-  <div class="nav-tabs">
-    <button class="tab-btn active" onclick="showView('survey')">Dotazník</button>
-    <button class="tab-btn" onclick="showView('dashboard')">Dashboard</button>
-  </div>
 </nav>
 
 <!-- ═══════════════ SURVEY ═══════════════ -->
-<div id="view-survey" class="view active">
 <div class="survey-wrap">
   <div class="survey-header">
     <div class="badge">User Research · 2026</div>
@@ -216,34 +211,6 @@
     <p>Pomáháš nám stavět appku která bude reálně fungovat v terénu.</p>
   </div>
 
-</div>
-</div>
-
-<!-- ═══════════════ DASHBOARD ═══════════════ -->
-<div id="view-dashboard" class="view">
-<div class="dash-wrap">
-
-  <div class="dash-header">
-    <div>
-      <h2>Výsledky průzkumu</h2>
-      <p>BivouacHunter — User Research 2026</p>
-    </div>
-    <span class="resp-count" id="resp-count">0 odpovědí</span>
-  </div>
-
-  <div id="dash-empty" class="empty-dash">
-    <div class="icon">📋</div>
-    <p>Zatím žádné odpovědi. Sdílej dotazník a výsledky se objeví tady.</p>
-  </div>
-
-  <div id="dash-content" style="display:none">
-
-    <div class="stats-grid" id="stats-grid"></div>
-
-    <div class="charts-grid" id="charts-grid"></div>
-
-  </div>
-</div>
 </div>
 
 <script src="bivouachunter_survey.js"></script>
