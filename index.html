@@ -74,7 +74,24 @@
 
     <!-- Q5 -->
     <div class="q-block">
-      <div class="q-num">05 / PARAMETRY MÍSTA</div>
+      <div class="q-num">05 / TRASY</div>
+      <div class="q-text">Jaké vícedenní trasy jsi šel/šla? <span style="color:var(--text-dim);font-weight:400">(vyber vše co platí)</span></div>
+      <div class="options">
+        <label class="opt"><input type="checkbox" name="q_trasy" value="Peaks of Balkans"><div class="opt-dot square"></div><span>Peaks of Balkans</span></label>
+        <label class="opt"><input type="checkbox" name="q_trasy" value="Via Dinarica"><div class="opt-dot square"></div><span>Via Dinarica</span></label>
+        <label class="opt"><input type="checkbox" name="q_trasy" value="High Rila Route (Bulharsko)"><div class="opt-dot square"></div><span>High Rila Route (Bulharsko)</span></label>
+        <label class="opt"><input type="checkbox" name="q_trasy" value="E3, E4 — evropské dálkové"><div class="opt-dot square"></div><span>E3, E4 — evropské dálkové</span></label>
+        <label class="opt"><input type="checkbox" name="q_trasy" value="Slovenský ráj, Tatry"><div class="opt-dot square"></div><span>Slovenský ráj, Tatry — kratší ale relevantní</span></label>
+      </div>
+      <div style="margin-top:1.4rem">
+        <div class="q-text" style="font-size:.92rem;margin-bottom:.7rem">Je nějaká trasa kde ti chybělo místo na spaní nebo ses cítil/a nejistě?</div>
+        <textarea name="q_trasy_neistota" placeholder="Napiš trasu nebo situaci..."></textarea>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="q-block">
+      <div class="q-num">06 / PARAMETRY MÍSTA</div>
       <div class="q-text">Jak důležité jsou pro tebe tyto parametry při výběru místa na spaní?</div>
       <div class="q-sub">0 = vůbec nezáleží · 5 = naprosto zásadní</div>
       <div class="scale-row" id="params-scale">
@@ -121,9 +138,9 @@
       </div>
     </div>
 
-    <!-- Q6 -->
+    <!-- Q7 -->
     <div class="q-block">
-      <div class="q-num">06 / APLIKACE</div>
+      <div class="q-num">07 / APLIKACE</div>
       <div class="q-text">Jaké aplikace používáš při plánování túry? <span style="color:var(--text-dim);font-weight:400">(vyber vše co platí)</span></div>
       <div class="opt-group-label">Mapy &amp; navigace</div>
       <div class="options">
@@ -152,9 +169,9 @@
       </div>
     </div>
 
-    <!-- Q7 -->
+    <!-- Q8 -->
     <div class="q-block">
-      <div class="q-num">07 / V TERÉNU</div>
+      <div class="q-num">08 / V TERÉNU</div>
       <div class="q-text">Jaké aplikace používáš přímo v terénu? <span style="color:var(--text-dim);font-weight:400">(vyber vše co platí)</span></div>
       <div class="opt-group-label">Mapy &amp; navigace</div>
       <div class="options">
@@ -184,24 +201,24 @@
       </div>
     </div>
 
-    <!-- Q8 -->
+    <!-- Q9 -->
     <div class="q-block">
-      <div class="q-num">08 / MEZERY</div>
+      <div class="q-num">09 / MEZERY</div>
       <div class="q-text">Co ti v těchto aplikacích nejvíc chybí nebo co tě na nich štve?</div>
       <textarea name="q6" placeholder="Napiš cokoliv — každý komentář je cenný..."></textarea>
     </div>
 
-    <!-- Q9 -->
+    <!-- Q10 -->
     <div class="q-block">
-      <div class="q-num">09 / PŘÍHODA</div>
+      <div class="q-num">10 / PŘÍHODA</div>
       <div class="q-text">Stalo se ti něco nepříjemného kvůli špatnému výběru místa nebo špatné situaci v terénu?</div>
       <div class="q-sub">Například — obsazený přístřešek, změna počasí, neprostupný terén...</div>
       <textarea name="q7" placeholder="Krátce popiš situaci..."></textarea>
     </div>
 
-    <!-- Q10 -->
+    <!-- Q11 -->
     <div class="q-block">
-      <div class="q-num">10 / ZAŘÍZENÍ</div>
+      <div class="q-num">11 / ZAŘÍZENÍ</div>
       <div class="q-text">Jaký telefon používáš?</div>
       <div class="options">
         <label class="opt"><input type="radio" name="q8" value="iPhone (iOS)"><div class="opt-dot"></div><span>iPhone (iOS)</span></label>
@@ -210,9 +227,9 @@
       </div>
     </div>
 
-    <!-- Q11 -->
+    <!-- Q12 -->
     <div class="q-block">
-      <div class="q-num">11 / OFFLINE</div>
+      <div class="q-num">12 / OFFLINE</div>
       <div class="q-text">Jak důležitá je pro tebe offline funkčnost appky v terénu?</div>
       <div class="options">
         <label class="opt"><input type="radio" name="q9" value="Naprosto zásadní — bez signálu jsem často"><div class="opt-dot"></div><span>Naprosto zásadní — bez signálu jsem často</span></label>
@@ -221,9 +238,9 @@
       </div>
     </div>
 
-    <!-- Q12 -->
+    <!-- Q13 -->
     <div class="q-block">
-      <div class="q-num">12 / ZÁJEM</div>
+      <div class="q-num">13 / ZÁJEM</div>
       <div class="q-text">Stáhl/a bys appku která ti automaticky zobrazí potenciální místa na spaní v okolí podle tvého filtru?</div>
       <div class="options">
         <label class="opt"><input type="radio" name="q10" value="Ano, hned"><div class="opt-dot"></div><span>Ano, hned</span></label>

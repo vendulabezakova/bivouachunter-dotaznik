@@ -34,6 +34,9 @@ document.getElementById('survey-form').addEventListener('submit', function(e) {
 
   ['q1','q2','q8','q9','q10','q_zk'].forEach(k => { resp[k] = fd.get(k) || ''; });
 
+  resp.q_trasy          = fd.getAll('q_trasy');
+  resp.q_trasy_neistota = fd.get('q_trasy_neistota') || '';
+
   resp.app_plan       = fd.getAll('app_plan');
   resp.app_plan_jine  = fd.get('app_plan_jine') || '';
   resp.app_teren      = fd.getAll('app_teren');
