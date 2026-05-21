@@ -34,10 +34,12 @@ document.getElementById('survey-form').addEventListener('submit', function(e) {
 
   ['q1','q2','q8','q9','q10','q_zk'].forEach(k => { resp[k] = fd.get(k) || ''; });
 
-  resp.app_plan   = fd.getAll('app_plan');
-  resp.app_teren  = fd.getAll('app_teren');
-  resp.q_kde      = fd.getAll('q_kde');
-  resp.q_kde_jine = fd.get('q_kde_jine') || '';
+  resp.app_plan       = fd.getAll('app_plan');
+  resp.app_plan_jine  = fd.get('app_plan_jine') || '';
+  resp.app_teren      = fd.getAll('app_teren');
+  resp.app_teren_jine = fd.get('app_teren_jine') || '';
+  resp.q_kde          = fd.getAll('q_kde');
+  resp.q_kde_jine     = fd.get('q_kde_jine') || '';
 
   const params = ['p_pristresek','p_voda','p_orientace','p_vitr','p_pocasi','p_pesina','p_odlehlost','p_teren'];
   params.forEach(k => { resp[k] = parseInt(fd.get(k)) || 3; });

@@ -68,7 +68,7 @@
         <label class="opt"><input type="checkbox" name="q_kde" value="Rakousko"><div class="opt-dot square"></div><span>Rakousko</span></label>
       </div>
       <div style="margin-top:.8rem">
-        <input type="text" name="q_kde_jine" placeholder="Jiné — napiš zemi nebo oblast..." style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:9px;color:var(--text);font-family:var(--font);font-size:.9rem;padding:.7rem 1rem;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='var(--emerald2)'" onblur="this.style.borderColor='var(--border)'">
+        <input type="text" name="q_kde_jine" placeholder="Jiné — napiš zemi nebo oblast..." class="text-input">
       </div>
     </div>
 
@@ -125,14 +125,30 @@
     <div class="q-block">
       <div class="q-num">06 / APLIKACE</div>
       <div class="q-text">Jaké aplikace používáš při plánování túry? <span style="color:var(--text-dim);font-weight:400">(vyber vše co platí)</span></div>
+      <div class="opt-group-label">Mapy &amp; navigace</div>
       <div class="options">
         <label class="opt"><input type="checkbox" name="app_plan" value="Mapy.cz"><div class="opt-dot square"></div><span>Mapy.cz</span></label>
         <label class="opt"><input type="checkbox" name="app_plan" value="AllTrails"><div class="opt-dot square"></div><span>AllTrails</span></label>
         <label class="opt"><input type="checkbox" name="app_plan" value="Komoot"><div class="opt-dot square"></div><span>Komoot</span></label>
         <label class="opt"><input type="checkbox" name="app_plan" value="OsmAnd"><div class="opt-dot square"></div><span>OsmAnd</span></label>
+        <label class="opt"><input type="checkbox" name="app_plan" value="Locus Map"><div class="opt-dot square"></div><span>Locus Map</span></label>
         <label class="opt"><input type="checkbox" name="app_plan" value="Wikiloc"><div class="opt-dot square"></div><span>Wikiloc</span></label>
         <label class="opt"><input type="checkbox" name="app_plan" value="Google Maps"><div class="opt-dot square"></div><span>Google Maps</span></label>
-        <label class="opt"><input type="checkbox" name="app_plan" value="Jiné / žádné"><div class="opt-dot square"></div><span>Jiné / žádné</span></label>
+        <label class="opt"><input type="checkbox" name="app_plan" value="Wildhood"><div class="opt-dot square"></div><span>Wildhood</span></label>
+        <label class="opt"><input type="checkbox" name="app_plan" value="iOverlander"><div class="opt-dot square"></div><span>iOverlander</span></label>
+      </div>
+      <div class="opt-group-label">Počasí</div>
+      <div class="options">
+        <label class="opt"><input type="checkbox" name="app_plan" value="yr.no"><div class="opt-dot square"></div><span>yr.no</span></label>
+        <label class="opt"><input type="checkbox" name="app_plan" value="Windy"><div class="opt-dot square"></div><span>Windy</span></label>
+        <label class="opt"><input type="checkbox" name="app_plan" value="Meteoblue"><div class="opt-dot square"></div><span>Meteoblue</span></label>
+        <label class="opt"><input type="checkbox" name="app_plan" value="Weather Underground"><div class="opt-dot square"></div><span>Weather Underground</span></label>
+        <label class="opt"><input type="checkbox" name="app_plan" value="ČHMÚ"><div class="opt-dot square"></div><span>ČHMÚ</span></label>
+        <label class="opt"><input type="checkbox" name="app_plan" value="In-počasí"><div class="opt-dot square"></div><span>In-počasí</span></label>
+        <label class="opt"><input type="checkbox" name="app_plan" value="Meteogram"><div class="opt-dot square"></div><span>Meteogram</span></label>
+      </div>
+      <div style="margin-top:.8rem">
+        <input type="text" name="app_plan_jine" placeholder="Jiné — napiš název appky..." class="text-input">
       </div>
     </div>
 
@@ -140,13 +156,31 @@
     <div class="q-block">
       <div class="q-num">07 / V TERÉNU</div>
       <div class="q-text">Jaké aplikace používáš přímo v terénu? <span style="color:var(--text-dim);font-weight:400">(vyber vše co platí)</span></div>
+      <div class="opt-group-label">Mapy &amp; navigace</div>
       <div class="options">
         <label class="opt"><input type="checkbox" name="app_teren" value="Mapy.cz"><div class="opt-dot square"></div><span>Mapy.cz</span></label>
         <label class="opt"><input type="checkbox" name="app_teren" value="AllTrails"><div class="opt-dot square"></div><span>AllTrails</span></label>
         <label class="opt"><input type="checkbox" name="app_teren" value="Komoot"><div class="opt-dot square"></div><span>Komoot</span></label>
         <label class="opt"><input type="checkbox" name="app_teren" value="OsmAnd"><div class="opt-dot square"></div><span>OsmAnd</span></label>
+        <label class="opt"><input type="checkbox" name="app_teren" value="Locus Map"><div class="opt-dot square"></div><span>Locus Map</span></label>
         <label class="opt"><input type="checkbox" name="app_teren" value="Wikiloc"><div class="opt-dot square"></div><span>Wikiloc</span></label>
+        <label class="opt"><input type="checkbox" name="app_teren" value="Wildhood"><div class="opt-dot square"></div><span>Wildhood</span></label>
+        <label class="opt"><input type="checkbox" name="app_teren" value="iOverlander"><div class="opt-dot square"></div><span>iOverlander</span></label>
+        <label class="opt"><input type="checkbox" name="app_teren" value="Papírová mapa"><div class="opt-dot square"></div><span>Papírová mapa</span></label>
         <label class="opt"><input type="checkbox" name="app_teren" value="Žádnou / offline mapa"><div class="opt-dot square"></div><span>Žádnou / offline mapa</span></label>
+      </div>
+      <div class="opt-group-label">Počasí</div>
+      <div class="options">
+        <label class="opt"><input type="checkbox" name="app_teren" value="yr.no"><div class="opt-dot square"></div><span>yr.no</span></label>
+        <label class="opt"><input type="checkbox" name="app_teren" value="Windy"><div class="opt-dot square"></div><span>Windy</span></label>
+        <label class="opt"><input type="checkbox" name="app_teren" value="Meteoblue"><div class="opt-dot square"></div><span>Meteoblue</span></label>
+        <label class="opt"><input type="checkbox" name="app_teren" value="Weather Underground"><div class="opt-dot square"></div><span>Weather Underground</span></label>
+        <label class="opt"><input type="checkbox" name="app_teren" value="ČHMÚ"><div class="opt-dot square"></div><span>ČHMÚ</span></label>
+        <label class="opt"><input type="checkbox" name="app_teren" value="In-počasí"><div class="opt-dot square"></div><span>In-počasí</span></label>
+        <label class="opt"><input type="checkbox" name="app_teren" value="Meteogram"><div class="opt-dot square"></div><span>Meteogram</span></label>
+      </div>
+      <div style="margin-top:.8rem">
+        <input type="text" name="app_teren_jine" placeholder="Jiné — napiš název appky..." class="text-input">
       </div>
     </div>
 

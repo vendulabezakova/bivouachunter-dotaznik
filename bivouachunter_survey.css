@@ -130,6 +130,33 @@ nav {
   margin-bottom: 1.2rem;
 }
 
+/* app group label */
+.opt-group-label {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin: 1rem 0 .4rem;
+}
+.opt-group-label:first-of-type { margin-top: 0; }
+
+/* shared text input */
+.text-input {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: .9rem;
+  padding: .7rem 1rem;
+  outline: none;
+  transition: border-color .2s;
+}
+.text-input:focus { border-color: var(--emerald2); }
+.text-input::placeholder { color: var(--text-dim); }
+
 /* radio/checkbox options */
 .options { display: flex; flex-direction: column; gap: .55rem; }
 .opt {
