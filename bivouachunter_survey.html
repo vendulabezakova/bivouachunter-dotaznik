@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BivouacHunter — Průzkum</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="bivouachunter_survey.css">
+</head>
+<body>
+
+<nav>
+  <div class="logo">bivouac<span>hunter</span> / výzkum</div>
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showView('survey')">Dotazník</button>
+    <button class="tab-btn" onclick="showView('dashboard')">Dashboard</button>
+  </div>
+</nav>
+
+<!-- ═══════════════ SURVEY ═══════════════ -->
+<div id="view-survey" class="view active">
+<div class="survey-wrap">
+  <div class="survey-header">
+    <div class="badge">User Research · 2026</div>
+    <h1>Jak bivakuješ?</h1>
+    <p>Dotazník zabere asi 4 minuty. Pomůžeš nám pochopit,<br>co skutečně potřebuješ přímo v terénu.</p>
+  </div>
+
+  <form id="survey-form">
+
+    <!-- Q1 -->
+    <div class="q-block">
+      <div class="q-num">01 / ZKUŠENOSTI</div>
+      <div class="q-text">Jak často chodíš na vícedenní túry?</div>
+      <div class="options">
+        <label class="opt"><input type="radio" name="q1" value="1x ročně nebo méně"><div class="opt-dot"></div><span>1× ročně nebo méně</span></label>
+        <label class="opt"><input type="radio" name="q1" value="2–4× ročně"><div class="opt-dot"></div><span>2–4× ročně</span></label>
+        <label class="opt"><input type="radio" name="q1" value="5–10× ročně"><div class="opt-dot"></div><span>5–10× ročně</span></label>
+        <label class="opt"><input type="radio" name="q1" value="Víc než 10× ročně"><div class="opt-dot"></div><span>Víc než 10× ročně</span></label>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="q-block">
+      <div class="q-num">02 / BIVAKOVÁNÍ</div>
+      <div class="q-text">Bivakuješ mimo označená místa?</div>
+      <div class="options">
+        <label class="opt"><input type="radio" name="q2" value="Pravidelně, je to záměr"><div class="opt-dot"></div><span>Pravidelně — je to záměr</span></label>
+        <label class="opt"><input type="radio" name="q2" value="Občas, když vychází situace"><div class="opt-dot"></div><span>Občas — když vychází situace</span></label>
+        <label class="opt"><input type="radio" name="q2" value="Výjimečně, z nouze"><div class="opt-dot"></div><span>Výjimečně — z nouze</span></label>
+        <label class="opt"><input type="radio" name="q2" value="Zatím ne, ale zajímá mě to"><div class="opt-dot"></div><span>Zatím ne, ale zajímá mě to</span></label>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="q-block">
+      <div class="q-num">03 / PARAMETRY MÍSTA</div>
+      <div class="q-text">Jak důležité jsou pro tebe tyto parametry při výběru místa na spaní?</div>
+      <div class="q-sub">0 = vůbec nezáleží · 5 = naprosto zásadní</div>
+      <div class="scale-row" id="params-scale">
+        <div class="scale-item">
+          <span class="scale-label">Přístřešek v okolí</span>
+          <input type="range" min="0" max="5" value="3" name="p_pristresek" oninput="updateVal(this)">
+          <span class="scale-val">3</span>
+        </div>
+        <div class="scale-item">
+          <span class="scale-label">Pramen / voda</span>
+          <input type="range" min="0" max="5" value="3" name="p_voda" oninput="updateVal(this)">
+          <span class="scale-val">3</span>
+        </div>
+        <div class="scale-item">
+          <span class="scale-label">Orientace (sv. strana)</span>
+          <input type="range" min="0" max="5" value="3" name="p_orientace" oninput="updateVal(this)">
+          <span class="scale-val">3</span>
+        </div>
+        <div class="scale-item">
+          <span class="scale-label">Vítr / expozice</span>
+          <input type="range" min="0" max="5" value="3" name="p_vitr" oninput="updateVal(this)">
+          <span class="scale-val">3</span>
+        </div>
+        <div class="scale-item">
+          <span class="scale-label">Srážky / počasí</span>
+          <input type="range" min="0" max="5" value="3" name="p_pocasi" oninput="updateVal(this)">
+          <span class="scale-val">3</span>
+        </div>
+        <div class="scale-item">
+          <span class="scale-label">Vzdálenost od pěšiny</span>
+          <input type="range" min="0" max="5" value="3" name="p_pesina" oninput="updateVal(this)">
+          <span class="scale-val">3</span>
+        </div>
+        <div class="scale-item">
+          <span class="scale-label">Odlehlost od lidí</span>
+          <input type="range" min="0" max="5" value="3" name="p_odlehlost" oninput="updateVal(this)">
+          <span class="scale-val">3</span>
+        </div>
+        <div class="scale-item">
+          <span class="scale-label">Rovný terén</span>
+          <input type="range" min="0" max="5" value="3" name="p_teren" oninput="updateVal(this)">
+          <span class="scale-val">3</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="q-block">
+      <div class="q-num">04 / APLIKACE</div>
+      <div class="q-text">Jaké aplikace používáš při plánování túry? <span style="color:var(--text-dim);font-weight:400">(vyber vše co platí)</span></div>
+      <div class="options">
+        <label class="opt"><input type="checkbox" name="app_plan" value="Mapy.cz"><div class="opt-dot square"></div><span>Mapy.cz</span></label>
+        <label class="opt"><input type="checkbox" name="app_plan" value="AllTrails"><div class="opt-dot square"></div><span>AllTrails</span></label>
+        <label class="opt"><input type="checkbox" name="app_plan" value="Komoot"><div class="opt-dot square"></div><span>Komoot</span></label>
+        <label class="opt"><input type="checkbox" name="app_plan" value="OsmAnd"><div class="opt-dot square"></div><span>OsmAnd</span></label>
+        <label class="opt"><input type="checkbox" name="app_plan" value="Wikiloc"><div class="opt-dot square"></div><span>Wikiloc</span></label>
+        <label class="opt"><input type="checkbox" name="app_plan" value="Google Maps"><div class="opt-dot square"></div><span>Google Maps</span></label>
+        <label class="opt"><input type="checkbox" name="app_plan" value="Jiné / žádné"><div class="opt-dot square"></div><span>Jiné / žádné</span></label>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="q-block">
+      <div class="q-num">05 / V TERÉNU</div>
+      <div class="q-text">Jaké aplikace používáš přímo v terénu? <span style="color:var(--text-dim);font-weight:400">(vyber vše co platí)</span></div>
+      <div class="options">
+        <label class="opt"><input type="checkbox" name="app_teren" value="Mapy.cz"><div class="opt-dot square"></div><span>Mapy.cz</span></label>
+        <label class="opt"><input type="checkbox" name="app_teren" value="AllTrails"><div class="opt-dot square"></div><span>AllTrails</span></label>
+        <label class="opt"><input type="checkbox" name="app_teren" value="Komoot"><div class="opt-dot square"></div><span>Komoot</span></label>
+        <label class="opt"><input type="checkbox" name="app_teren" value="OsmAnd"><div class="opt-dot square"></div><span>OsmAnd</span></label>
+        <label class="opt"><input type="checkbox" name="app_teren" value="Wikiloc"><div class="opt-dot square"></div><span>Wikiloc</span></label>
+        <label class="opt"><input type="checkbox" name="app_teren" value="Žádnou / offline mapa"><div class="opt-dot square"></div><span>Žádnou / offline mapa</span></label>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="q-block">
+      <div class="q-num">06 / MEZERY</div>
+      <div class="q-text">Co ti v těchto aplikacích nejvíc chybí nebo co tě na nich štve?</div>
+      <textarea name="q6" placeholder="Napiš cokoliv — každý komentář je cenný..."></textarea>
+    </div>
+
+    <!-- Q7 -->
+    <div class="q-block">
+      <div class="q-num">07 / PŘÍHODA</div>
+      <div class="q-text">Stalo se ti něco nepříjemného kvůli špatnému výběru místa nebo špatné situaci v terénu?</div>
+      <div class="q-sub">Například — obsazený přístřešek, změna počasí, neprostupný terén...</div>
+      <textarea name="q7" placeholder="Krátce popiš situaci..."></textarea>
+    </div>
+
+    <!-- Q8 -->
+    <div class="q-block">
+      <div class="q-num">08 / ZAŘÍZENÍ</div>
+      <div class="q-text">Jaký telefon používáš?</div>
+      <div class="options">
+        <label class="opt"><input type="radio" name="q8" value="iPhone (iOS)"><div class="opt-dot"></div><span>iPhone (iOS)</span></label>
+        <label class="opt"><input type="radio" name="q8" value="Android"><div class="opt-dot"></div><span>Android</span></label>
+        <label class="opt"><input type="radio" name="q8" value="Obojí / různé"><div class="opt-dot"></div><span>Obojí / různé</span></label>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="q-block">
+      <div class="q-num">09 / OFFLINE</div>
+      <div class="q-text">Jak důležitá je pro tebe offline funkčnost appky v terénu?</div>
+      <div class="options">
+        <label class="opt"><input type="radio" name="q9" value="Naprosto zásadní — bez signálu jsem často"><div class="opt-dot"></div><span>Naprosto zásadní — bez signálu jsem často</span></label>
+        <label class="opt"><input type="radio" name="q9" value="Důležitá, ale nějak se vždy domluvím"><div class="opt-dot"></div><span>Důležitá, ale nějak se vždy domluvím</span></label>
+        <label class="opt"><input type="radio" name="q9" value="Nevadí mi — signál většinou mám"><div class="opt-dot"></div><span>Nevadí mi — signál většinou mám</span></label>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="q-block">
+      <div class="q-num">10 / ZÁJEM</div>
+      <div class="q-text">Stáhl/a bys appku která ti automaticky zobrazí potenciální místa na spaní v okolí podle tvého filtru?</div>
+      <div class="options">
+        <label class="opt"><input type="radio" name="q10" value="Ano, hned"><div class="opt-dot"></div><span>Ano, hned</span></label>
+        <label class="opt"><input type="radio" name="q10" value="Záleží na ceně"><div class="opt-dot"></div><span>Záleží na ceně</span></label>
+        <label class="opt"><input type="radio" name="q10" value="Spíš bych použil/a web verzi"><div class="opt-dot"></div><span>Spíš bych použil/a web verzi</span></label>
+        <label class="opt"><input type="radio" name="q10" value="Asi ne"><div class="opt-dot"></div><span>Asi ne</span></label>
+      </div>
+    </div>
+
+    <div class="submit-row">
+      <button type="submit" class="btn-submit">Odeslat odpovědi →</button>
+    </div>
+
+  </form>
+
+  <div class="success-msg" id="success-msg">
+    <div class="icon">🌲</div>
+    <h2>Díky za odpovědi!</h2>
+    <p>Pomáháš nám stavět appku která bude reálně fungovat v terénu.</p>
+  </div>
+
+</div>
+</div>
+
+<!-- ═══════════════ DASHBOARD ═══════════════ -->
+<div id="view-dashboard" class="view">
+<div class="dash-wrap">
+
+  <div class="dash-header">
+    <div>
+      <h2>Výsledky průzkumu</h2>
+      <p>BivouacHunter — User Research 2026</p>
+    </div>
+    <span class="resp-count" id="resp-count">0 odpovědí</span>
+  </div>
+
+  <div id="dash-empty" class="empty-dash">
+    <div class="icon">📋</div>
+    <p>Zatím žádné odpovědi. Sdílej dotazník a výsledky se objeví tady.</p>
+  </div>
+
+  <div id="dash-content" style="display:none">
+
+    <div class="stats-grid" id="stats-grid"></div>
+
+    <div class="charts-grid" id="charts-grid"></div>
+
+  </div>
+</div>
+</div>
+
+<script src="bivouachunter_survey.js"></script>
+</body>
+</html>
