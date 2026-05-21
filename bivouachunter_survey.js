@@ -40,9 +40,38 @@ document.querySelectorAll('.opt input').forEach(inp => {
   });
 });
 
+const REQUIRED = ['q1', 'q_zk', 'q8', 'q9', 'q10'];
+
+REQUIRED.forEach(name => {
+  document.querySelectorAll(`[name="${name}"]`).forEach(inp => {
+    inp.addEventListener('change', () => inp.closest('.q-block').classList.remove('invalid'));
+  });
+});
+
+function validateForm(fd) {
+  let firstInvalid = null;
+  REQUIRED.forEach(name => {
+    const block = document.querySelector(`[name="${name}"]`).closest('.q-block');
+    if (!fd.get(name)) {
+      block.classList.add('invalid');
+      if (!firstInvalid) firstInvalid = block;
+    } else {
+      block.classList.remove('invalid');
+    }
+  });
+  return firstInvalid;
+}
+
 document.getElementById('survey-form').addEventListener('submit', function(e) {
   e.preventDefault();
   const fd = new FormData(this);
+
+  const firstInvalid = validateForm(fd);
+  if (firstInvalid) {
+    firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
   const resp = { ts: Date.now() };
 
   ['q1','q2','q8','q9','q10','q_zk'].forEach(k => { resp[k] = fd.get(k) || ''; });

@@ -110,6 +110,16 @@ nav {
   transition: border-color .2s;
 }
 .q-block:focus-within { border-color: var(--emerald2); }
+.q-block.invalid { border-color: var(--terracotta); }
+.q-block.invalid::after {
+  content: 'Tato otázka je povinná';
+  display: block;
+  margin-top: .8rem;
+  font-size: .75rem;
+  color: var(--terracotta);
+  font-family: var(--mono);
+  letter-spacing: .06em;
+}
 .q-num {
   font-family: var(--mono);
   font-size: .75rem;
