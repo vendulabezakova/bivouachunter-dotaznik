@@ -46,11 +46,13 @@ document.getElementById('survey-form').addEventListener('submit', function(e) {
   const resp = { ts: Date.now() };
 
   // radio
-  ['q1','q2','q8','q9','q10'].forEach(k => { resp[k] = fd.get(k) || ''; });
+  ['q1','q2','q8','q9','q10','q_zk'].forEach(k => { resp[k] = fd.get(k) || ''; });
 
   // checkboxes
   resp.app_plan  = fd.getAll('app_plan');
   resp.app_teren = fd.getAll('app_teren');
+  resp.q_kde     = fd.getAll('q_kde');
+  resp.q_kde_jine = fd.get('q_kde_jine') || '';
 
   // sliders
   const params = ['p_pristresek','p_voda','p_orientace','p_vitr','p_pocasi','p_pesina','p_odlehlost','p_teren'];
@@ -136,7 +138,13 @@ function renderCharts(data) {
   // 1. Frekvence túr
   grid.appendChild(barCard('Frekvence túr', countValues(data,'q1'), n, false));
 
-  // 2. iOS vs Android
+  // 2. Úroveň zkušeností
+  grid.appendChild(barCard('Úroveň zkušeností', countValues(data,'q_zk'), n, false));
+
+  // 3. Kde bivakují
+  grid.appendChild(barCard('Kde bivakují', countValues(data,'q_kde'), n, true));
+
+  // 4. iOS vs Android
   grid.appendChild(donutCard('Zařízení', countValues(data,'q8')));
 
   // 3. Důležitost parametrů
@@ -278,11 +286,11 @@ function quotesCard(title, quotes, terra = false) {
 function seedDemo() {
   if (loadResponses().length > 0) return;
   const demo = [
-    { ts: Date.now()-1e6, q1:'5–10× ročně', q2:'Pravidelně, je to záměr', q8:'iPhone (iOS)', q9:'Naprosto zásadní — bez signálu jsem často', q10:'Ano, hned', app_plan:['Mapy.cz','Komoot'], app_teren:['Mapy.cz'], p_pristresek:4, p_voda:5, p_orientace:2, p_vitr:3, p_pocasi:5, p_pesina:4, p_odlehlost:3, p_teren:4, q6:'Mapy.cz neumí filtrovat přístřešky, musím je hledat ručně.', q7:'Přišel jsem k přístřešku ve 20:00, byl obsazený. Musel jsem hledat náhradní místo za tmy.' },
-    { ts: Date.now()-2e6, q1:'2–4× ročně', q2:'Občas, když vychází situace', q8:'Android', q9:'Důležitá, ale nějak se vždy domluvím', q10:'Záleží na ceně', app_plan:['AllTrails','Mapy.cz'], app_teren:['AllTrails'], p_pristresek:3, p_voda:4, p_orientace:3, p_vitr:2, p_pocasi:4, p_pesina:3, p_odlehlost:4, p_teren:3, q6:'AllTrails má skvělé trasy, ale nic o místech na spaní.', q7:'Terén byl podmáčený, netušil jsem to dopředu.' },
-    { ts: Date.now()-3e6, q1:'Víc než 10× ročně', q2:'Pravidelně, je to záměr', q8:'iPhone (iOS)', q9:'Naprosto zásadní — bez signálu jsem často', q10:'Ano, hned', app_plan:['OsmAnd','Wikiloc'], app_teren:['OsmAnd'], p_pristresek:2, p_voda:5, p_orientace:4, p_vitr:4, p_pocasi:3, p_pesina:2, p_odlehlost:5, p_teren:4, q6:'OsmAnd je super offline ale složitý. Chybí mi filtrování spotů.', q7:'Počasí se otočilo, musel jsem změnit celou trasu. Neměl jsem zálohu B.' },
-    { ts: Date.now()-4e6, q1:'5–10× ročně', q2:'Výjimečně, z nouze', q8:'Android', q9:'Nevadí mi — signál většinou mám', q10:'Záleží na ceně', app_plan:['Mapy.cz','Google Maps'], app_teren:['Mapy.cz'], p_pristresek:5, p_voda:3, p_orientace:1, p_vitr:2, p_pocasi:4, p_pesina:4, p_odlehlost:2, p_teren:3, q6:'Chtěl bych vidět přístřešky na mapě s detailem — kapacita, stav.', q7:'' },
-    { ts: Date.now()-5e6, q1:'2–4× ročně', q2:'Občas, když vychází situace', q8:'iPhone (iOS)', q9:'Naprosto zásadní — bez signálu jsem často', q10:'Ano, hned', app_plan:['Komoot','Mapy.cz'], app_teren:['Komoot'], p_pristresek:3, p_voda:4, p_orientace:3, p_vitr:3, p_pocasi:5, p_pesina:3, p_odlehlost:3, p_teren:3, q6:'Komoot nefunguje offline spolehlivě.', q7:'Bloudila jsem hodinu protože mapy se nepřepnuly na offline mode.' },
+    { ts: Date.now()-1e6, q1:'5–10× ročně', q2:'Pravidelně, je to záměr', q_zk:'Zkušený/á — bivak je můj standard', q_kde:['Česko','Slovensko'], q_kde_jine:'', q8:'iPhone (iOS)', q9:'Naprosto zásadní — bez signálu jsem často', q10:'Ano, hned', app_plan:['Mapy.cz','Komoot'], app_teren:['Mapy.cz'], p_pristresek:4, p_voda:5, p_orientace:2, p_vitr:3, p_pocasi:5, p_pesina:4, p_odlehlost:3, p_teren:4, q6:'Mapy.cz neumí filtrovat přístřešky, musím je hledat ručně.', q7:'Přišel jsem k přístřešku ve 20:00, byl obsazený. Musel jsem hledat náhradní místo za tmy.' },
+    { ts: Date.now()-2e6, q1:'2–4× ročně', q2:'Občas, když vychází situace', q_zk:'Mám zkušenosti — bivakuji pravidelně', q_kde:['Česko'], q_kde_jine:'Alpy', q8:'Android', q9:'Důležitá, ale nějak se vždy domluvím', q10:'Záleží na ceně', app_plan:['AllTrails','Mapy.cz'], app_teren:['AllTrails'], p_pristresek:3, p_voda:4, p_orientace:3, p_vitr:2, p_pocasi:4, p_pesina:3, p_odlehlost:4, p_teren:3, q6:'AllTrails má skvělé trasy, ale nic o místech na spaní.', q7:'Terén byl podmáčený, netušil jsem to dopředu.' },
+    { ts: Date.now()-3e6, q1:'Víc než 10× ročně', q2:'Pravidelně, je to záměr', q_zk:'Zkušený/á — bivak je můj standard', q_kde:['Slovensko','Rakousko'], q_kde_jine:'Norsko', q8:'iPhone (iOS)', q9:'Naprosto zásadní — bez signálu jsem často', q10:'Ano, hned', app_plan:['OsmAnd','Wikiloc'], app_teren:['OsmAnd'], p_pristresek:2, p_voda:5, p_orientace:4, p_vitr:4, p_pocasi:3, p_pesina:2, p_odlehlost:5, p_teren:4, q6:'OsmAnd je super offline ale složitý. Chybí mi filtrování spotů.', q7:'Počasí se otočilo, musel jsem změnit celou trasu. Neměl jsem zálohu B.' },
+    { ts: Date.now()-4e6, q1:'5–10× ročně', q2:'Výjimečně, z nouze', q_zk:'Mám zkušenosti — bivakuji pravidelně', q_kde:['Česko'], q_kde_jine:'', q8:'Android', q9:'Nevadí mi — signál většinou mám', q10:'Záleží na ceně', app_plan:['Mapy.cz','Google Maps'], app_teren:['Mapy.cz'], p_pristresek:5, p_voda:3, p_orientace:1, p_vitr:2, p_pocasi:4, p_pesina:4, p_odlehlost:2, p_teren:3, q6:'Chtěl bych vidět přístřešky na mapě s detailem — kapacita, stav.', q7:'' },
+    { ts: Date.now()-5e6, q1:'2–4× ročně', q2:'Občas, když vychází situace', q_zk:'Začínám — pár nocí za sebou', q_kde:['Česko','Slovensko'], q_kde_jine:'', q8:'iPhone (iOS)', q9:'Naprosto zásadní — bez signálu jsem často', q10:'Ano, hned', app_plan:['Komoot','Mapy.cz'], app_teren:['Komoot'], p_pristresek:3, p_voda:4, p_orientace:3, p_vitr:3, p_pocasi:5, p_pesina:3, p_odlehlost:3, p_teren:3, q6:'Komoot nefunguje offline spolehlivě.', q7:'Bloudila jsem hodinu protože mapy se nepřepnuly na offline mode.' },
   ];
   demo.forEach(saveResponse);
 }
