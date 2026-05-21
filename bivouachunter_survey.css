@@ -258,12 +258,10 @@ textarea::placeholder { color: var(--text-dim); }
 
 .success-msg {
   display: none;
-  position: relative;
-  aspect-ratio: 1 / 1;
+  position: fixed;
+  inset: 0;
   background: url('images/bv-hunter-thankyou.jpg') center / cover no-repeat;
-  border-radius: 16px;
-  overflow: hidden;
-  margin-top: 2rem;
+  z-index: 200;
 }
 .success-msg::before {
   content: '';
