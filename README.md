@@ -29,6 +29,7 @@ Dotazník je postaven jako jednoduchá statická stránka bez externích závisl
 
 ---
 
-## Živá verze
+## Živá verze a dashboard
 
 [vendulabezakova.github.io/bivouachunter-dotaznik](https://vendulabezakova.github.io/bivouachunter-dotaznik/)
+[https://vendulabezakova.github.io/bivouachunter-dotaznik/dashboard](https://vendulabezakova.github.io/bivouachunter-dotaznik/dashboard)
