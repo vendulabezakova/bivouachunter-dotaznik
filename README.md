@@ -24,7 +24,7 @@ Dotazník je postaven jako jednoduchá statická stránka bez externích závisl
 
 - **HTML / CSS / JavaScript** — čistý frontend, žádný framework
 - **Google Fonts** — DM Sans, DM Mono
-- **localStorage** — odpovědi se ukládají lokálně v prohlížeči
+- **Supabase** — odpovědi se ukládají do cloudové databáze
 - **GitHub Pages** — hosting
 
 ---
