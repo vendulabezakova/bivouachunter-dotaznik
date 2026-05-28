@@ -310,8 +310,14 @@ select.text-input option { background: #1a2e22; color: var(--text); }
 .transcript-upload-label input { display: none; }
 .transcript-filename {
   font-size: .75rem; font-family: var(--mono); color: var(--text-dim);
-  margin-left: .5rem;
 }
+.transcript-download-btn {
+  font-size: .8rem; font-family: var(--mono); color: var(--emerald);
+  background: var(--emerald-dim); border: 1px solid rgba(46,204,122,.3);
+  padding: .45rem 1rem; border-radius: 7px; cursor: pointer;
+  transition: all .2s;
+}
+.transcript-download-btn:hover { background: rgba(46,204,122,.15); }
 </style>
 </head>
 <body>
@@ -393,15 +399,15 @@ select.text-input option { background: #1a2e22; color: var(--text); }
     </div>
     <div class="q-block">
       <div class="field-group">
-        <label class="transcript-upload-label">
-          📎 Nahrát .txt soubor
-          <input type="file" id="transcript-file" accept=".txt" onchange="loadTranscript(event)">
-        </label>
-        <span class="transcript-filename" id="transcript-filename"></span>
-        <textarea id="f-transcript"
-          placeholder="Sem se načte text z nahrávky, nebo ho vlož ručně..."
-          style="min-height:220px; font-size:.78rem; font-family:var(--mono); line-height:1.6;"
-          onblur="autosave()"></textarea>
+        <div style="display:flex; align-items:center; gap:.8rem; flex-wrap:wrap;">
+          <label class="transcript-upload-label">
+            📎 Nahrát .txt soubor
+            <input type="file" id="transcript-file" accept=".txt" onchange="loadTranscript(event)">
+          </label>
+          <span class="transcript-filename" id="transcript-filename"></span>
+          <button id="transcript-download" class="transcript-download-btn" style="display:none" onclick="downloadTranscript()">⬇ Stáhnout</button>
+        </div>
+        <textarea id="f-transcript" style="display:none" onblur="autosave()"></textarea>
       </div>
     </div>
 
@@ -818,6 +824,7 @@ function openInterview(id) {
 
   document.getElementById('transcript-filename').textContent = '';
   document.getElementById('transcript-file').value = '';
+  document.getElementById('transcript-download').style.display = (iv.transcript && iv.transcript.trim()) ? '' : 'none';
   updateHeading();
   document.getElementById('view-list').style.display   = 'none';
   document.getElementById('view-detail').style.display = '';
@@ -903,9 +910,24 @@ function loadTranscript(event) {
   reader.onload = e => {
     document.getElementById('f-transcript').value = e.target.result;
     document.getElementById('transcript-filename').textContent = '✓ ' + file.name;
+    document.getElementById('transcript-download').style.display = '';
     autosave();
   };
   reader.readAsText(file, 'UTF-8');
+}
+
+function downloadTranscript() {
+  const text = document.getElementById('f-transcript').value;
+  if (!text) return;
+  const iv = interviews.find(i => i.id === currentId);
+  const name = (iv && iv.respondent_name) ? iv.respondent_name.replace(/\s+/g, '_') : 'transkript';
+  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${name}_transkript.txt`;
+  a.click();
+  URL.revokeObjectURL(url);
 }
 
 // ── Boot ────────────────────────────────────────────────────────────
