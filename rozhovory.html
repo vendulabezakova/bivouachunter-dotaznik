@@ -400,11 +400,10 @@ select.text-input option { background: #1a2e22; color: var(--text); }
     <div class="q-block">
       <div class="field-group">
         <div style="display:flex; align-items:center; gap:.8rem; flex-wrap:wrap;">
-          <label class="transcript-upload-label">
+          <label id="transcript-upload" class="transcript-upload-label">
             📎 Nahrát .txt soubor
             <input type="file" id="transcript-file" accept=".txt" onchange="loadTranscript(event)">
           </label>
-          <span class="transcript-filename" id="transcript-filename"></span>
           <button id="transcript-download" class="transcript-download-btn" style="display:none" onclick="downloadTranscript()">⬇ Stáhnout</button>
         </div>
         <textarea id="f-transcript" style="display:none" onblur="autosave()"></textarea>
@@ -822,9 +821,10 @@ function openInterview(id) {
     if (el) el.value = iv[f] ?? '';
   });
 
-  document.getElementById('transcript-filename').textContent = '';
   document.getElementById('transcript-file').value = '';
-  document.getElementById('transcript-download').style.display = (iv.transcript && iv.transcript.trim()) ? '' : 'none';
+  const hasTranscript = !!(iv.transcript && iv.transcript.trim());
+  document.getElementById('transcript-upload').style.display = hasTranscript ? 'none' : '';
+  document.getElementById('transcript-download').style.display = hasTranscript ? '' : 'none';
   updateHeading();
   document.getElementById('view-list').style.display   = 'none';
   document.getElementById('view-detail').style.display = '';
@@ -909,7 +909,7 @@ function loadTranscript(event) {
   const reader = new FileReader();
   reader.onload = e => {
     document.getElementById('f-transcript').value = e.target.result;
-    document.getElementById('transcript-filename').textContent = '✓ ' + file.name;
+    document.getElementById('transcript-upload').style.display = 'none';
     document.getElementById('transcript-download').style.display = '';
     autosave();
   };
