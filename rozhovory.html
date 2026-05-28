@@ -298,6 +298,20 @@ select.text-input option { background: #1a2e22; color: var(--text); }
   box-shadow: 0 6px 28px rgba(212,96,58,.4);
 }
 .btn-save-large.saved { background: var(--emerald2); box-shadow: 0 4px 20px rgba(46,204,122,.2); }
+
+.transcript-upload-label {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: .8rem; font-family: var(--mono); color: var(--emerald);
+  background: var(--emerald-dim); border: 1px solid rgba(46,204,122,.3);
+  padding: .45rem 1rem; border-radius: 7px; cursor: pointer;
+  transition: all .2s; margin-bottom: .8rem;
+}
+.transcript-upload-label:hover { background: rgba(46,204,122,.15); }
+.transcript-upload-label input { display: none; }
+.transcript-filename {
+  font-size: .75rem; font-family: var(--mono); color: var(--text-dim);
+  margin-left: .5rem;
+}
 </style>
 </head>
 <body>
@@ -370,6 +384,24 @@ select.text-input option { background: #1a2e22; color: var(--text); }
           <label class="field-label">Délka (min)</label>
           <input type="number" id="f-duration" class="text-input" placeholder="60" min="1" onblur="autosave()">
         </div>
+      </div>
+    </div>
+
+    <!-- ── TRANSKRIPT ── -->
+    <div class="section-heading">
+      <span class="section-label">TRANSKRIPT</span>
+    </div>
+    <div class="q-block">
+      <div class="field-group">
+        <label class="transcript-upload-label">
+          📎 Nahrát .txt soubor
+          <input type="file" id="transcript-file" accept=".txt" onchange="loadTranscript(event)">
+        </label>
+        <span class="transcript-filename" id="transcript-filename"></span>
+        <textarea id="f-transcript"
+          placeholder="Sem se načte text z nahrávky, nebo ho vlož ručně..."
+          style="min-height:220px; font-size:.78rem; font-family:var(--mono); line-height:1.6;"
+          onblur="autosave()"></textarea>
       </div>
     </div>
 
@@ -617,7 +649,7 @@ const SUPABASE_KEY = 'sb_publishable_tbLChJpoydiXQxWczuIk-Q_L8_3cnk-';
 const LS_KEY = 'bh_interviews';
 
 const ALL_FIELDS = [
-  'respondent_name','interview_date','form','duration',
+  'respondent_name','interview_date','form','duration','transcript',
   'small_talk',
   'warmup_q1_answer','warmup_q1_notes',
   'warmup_q2_answer','warmup_q2_notes',
@@ -742,6 +774,7 @@ function renderList() {
     const status   = iv.status || 'Nový';
     const empDone  = ['empathy_says','empathy_thinks','empathy_feels','empathy_does'].every(k => iv[k] && iv[k].trim());
     const probDone = ['problem_user','problem_goal','problem_but','problem_feels'].every(k => iv[k] && iv[k].trim());
+    const hasTrans = !!(iv.transcript && iv.transcript.trim());
 
     return `
       <div class="interview-card" onclick="openInterview('${esc(iv.id)}')">
@@ -757,6 +790,7 @@ function renderList() {
         <div class="card-indicators">
           <span class="indicator ${empDone  ? 'ind-done' : 'ind-todo'}">Empathy mapa ${empDone  ? '✓' : '○'}</span>
           <span class="indicator ${probDone ? 'ind-done' : 'ind-todo'}">Problem Statement ${probDone ? '✓' : '○'}</span>
+          <span class="indicator ${hasTrans ? 'ind-done' : 'ind-todo'}">Transkript ${hasTrans ? '✓' : '○'}</span>
         </div>
       </div>`;
   }).join('');
@@ -782,6 +816,8 @@ function openInterview(id) {
     if (el) el.value = iv[f] ?? '';
   });
 
+  document.getElementById('transcript-filename').textContent = '';
+  document.getElementById('transcript-file').value = '';
   updateHeading();
   document.getElementById('view-list').style.display   = 'none';
   document.getElementById('view-detail').style.display = '';
@@ -858,6 +894,18 @@ function autosave() {
 function manualSave() {
   clearTimeout(saveTimer);
   saveCurrentInterview(true);
+}
+
+function loadTranscript(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('f-transcript').value = e.target.result;
+    document.getElementById('transcript-filename').textContent = '✓ ' + file.name;
+    autosave();
+  };
+  reader.readAsText(file, 'UTF-8');
 }
 
 // ── Boot ────────────────────────────────────────────────────────────
